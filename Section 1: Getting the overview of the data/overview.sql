@@ -44,7 +44,7 @@ GROUP BY EXTRACT(YEAR FROM PurchaseDate),
 
 --8) total purchase order by Product category
 SELECT I.Item_Category,
-  SUM(PurchasingAmt) AS Total_Sales
+  ROUND(SUM(PurchasingAmt),2) AS Total_Sales
 FROM CustomerTransactionData AS C
 JOIN
   Item AS I
@@ -55,7 +55,7 @@ GROUP BY I.Item_Category;
 --9) total purchase order by Yearly and Quarterly basis
 SELECT EXTRACT(YEAR FROM PurchaseDate),
   EXTRACT(QUARTER FROM PurchaseDate),
-  SUM(PurchasingAmt) AS Total_Sales
+  ROUND(SUM(PurchasingAmt),2) AS Total_Sales
 FROM CustomerTransactionData
 GROUP BY EXTRACT(YEAR FROM PurchaseDate), 
         EXTRACT(QUARTER FROM PurchaseDate);
@@ -63,14 +63,14 @@ GROUP BY EXTRACT(YEAR FROM PurchaseDate),
 
 --10) total purchase order by Order Type
 SELECT OrderType,
-  SUM(PurchasingAmt) AS Total_Sales
+  ROUND(SUM(PurchasingAmt),2) AS Total_Sales
 FROM CustomerTransactionData
 GROUP BY OrderType;
 
 
 --11) total purchase order by City Tier
 SELECT CityTier,
-  SUM(PurchasingAmt) AS Total_Sales
+  ROUND(SUM(PurchasingAmt),2) AS Total_Sales
 FROM CustomerTransactionData AS CT
 JOIN
   Customer AS C
